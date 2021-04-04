@@ -11,7 +11,7 @@
     "services": [
         {
             "name": "advanced",
-            "url": "http://localhost:8010",
+            "url": "http://172.17.0.1:8010",
             "openapi": "/docs/openapi.json",
             "filter": [
                 "x-whatever"
@@ -19,23 +19,23 @@
         },
         {
             "name": "dotnetapi",
-            "url": "http://localhost:8011",
+            "url": "http://172.17.0.1:8011",
             "openapi": "/swagger/v1/swagger.json",
             "filter": []
         },
         {
             "name": "greeter",
-            "url": "http://localhost:8012",
+            "url": "http://172.17.0.1:8012",
             "openapi": "/docs/openapi.json"
         },
         {
             "name": "mathservice",
-            "url": "http://localhost:8013",
+            "url": "http://172.17.0.1:8013",
             "openapi": "/docs/openapi.json"
         },
         {
             "name": "task-api",
-            "url": "http://localhost:8014",
+            "url": "http://172.17.0.1:8014",
             "openapi": "/docs/openapi.json"
         }
     ]

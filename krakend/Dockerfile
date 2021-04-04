@@ -1,9 +1,12 @@
 FROM debian:buster
 
-WORKDIR /root/
+WORKDIR /
 
-COPY ./run.sh .
-RUN chmod 755 ./run.sh
+COPY ./run.sh /usr/local/bin/run
+RUN chmod 755 /usr/local/bin/run
+
+COPY ./check.sh /usr/local/bin/check
+RUN chmod 755 /usr/local/bin/check
 
 COPY ./krakend .
-CMD ["./run.sh"]
+CMD ["/usr/local/bin/run"]

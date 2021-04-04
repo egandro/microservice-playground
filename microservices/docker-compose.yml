@@ -1,5 +1,13 @@
 version: "3.9"
 services:
+  # this is no microservice - just for the joined openAPI config
+  openapi-ui:
+    image: "openapi-ui:latest"
+    ports:
+      - "8005:8080"
+    volumes:
+      - ../config/swagger-ui:/root/public
+  # microserives start here
   advanced:
     image: "advanced:latest"
     ports:
@@ -20,10 +28,3 @@ services:
     image: "task-api:latest"
     ports:
       - "8014:8080"
-
-  # openapi:
-  #   image: "openapi:latest"
-  #   ports:
-  #     - "8005:8080"
-  #   volumes:
-  #     - ./codegen:/root/public

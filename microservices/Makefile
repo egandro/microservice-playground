@@ -5,7 +5,7 @@ advanced:
 	cd advanced && make
 
 .PHONY: dotnetapi
-advanced:
+dotnetapi:
 	cd dotnetapi && make
 
 .PHONY: greeter
@@ -19,3 +19,12 @@ mathservice:
 .PHONY: task-api
 task-api:
 	cd task-api && make
+
+.PHONY: run
+run: all stop
+	docker-compose up || echo ""
+
+.PHONY: stop
+stop:
+	docker-compose stop || echo ""
+	docker-compose rm -f || echo ""

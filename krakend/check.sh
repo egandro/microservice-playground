@@ -10,4 +10,4 @@ fi
 FC_ENABLE=1 \
 FC_SETTINGS="/config/settings" \
 FC_PARTIALS="/config/partials" \
-./krakend run -d -c "/config/krakend.json"
+./krakend check -d -c "/config/krakend.json"

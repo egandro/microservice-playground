@@ -13,7 +13,10 @@ if (options.debug) {
 }
 
 try {
-    parse(options.config);
+    createEndpointAndOpenAPI(options.config);
+    console.log("endpoint created:", options.endpoint);
+    console.log("openAPI created:", options.openapi);
+    process.exit(0);
 }
 catch (err) {
     console.error(err);
@@ -23,7 +26,7 @@ const openApiPaths = {};
 const openApiComponents = {};
 const openApiSecuritySchemes = {};
 
-async function parse(fileName) {
+async function createEndpointAndOpenAPI(fileName) {
     const config = require(fileName);
 
     let openApiSpecs = [];
@@ -319,7 +322,6 @@ async function parseEndpointData(data, filters) {
 
     return result;
 }
-
 
 function parseCli() {
     program.version(packageData.version);
