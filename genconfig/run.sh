@@ -1,15 +1,10 @@
 #!/bin/bash
 
-node index.js
 
-# if [[ ! -d /config ]]
-# then
-#     echo "error: /config doesn't exists on your filesystem. mount a volume with config/krakend.json"
-#     echo "   giving up..."
-#     sleep infinity
-# fi
+if [[ ! -d /work ]]
+then
+    echo "error: /work doesn't exists on your filesystem. mount a volume with config"
+    exit -1
+fi
 
-# FC_ENABLE=1 \
-# FC_SETTINGS="/config/settings" \
-# FC_PARTIALS="/config/partials" \
-# krakend run -d -c "/config/krakend.json"
+node ./index.js $@
