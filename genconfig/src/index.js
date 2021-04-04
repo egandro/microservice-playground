@@ -14,9 +14,6 @@ if (options.debug) {
 
 try {
     createEndpointAndOpenAPI(options.config);
-    console.log("endpoint created:", options.endpoint);
-    console.log("openAPI created:", options.openapi);
-    process.exit(0);
 }
 catch (err) {
     console.error(err);
@@ -113,8 +110,6 @@ async function createEndpointAndOpenAPI(fileName) {
     //console.log(openApiPaths);
     //console.log(openApiComponents);
 
-    // if (true) return;
-
     const api_group = {
         api_group: endpoints
     }
@@ -122,6 +117,9 @@ async function createEndpointAndOpenAPI(fileName) {
     fs.writeFileSync(options.endpoint, endpointsJson);
 
     //console.log(endpointsJson);
+
+    console.log("endpoint created:", options.endpoint);
+    console.log("openAPI created:", options.openapi);
 }
 
 async function parseEndpointData(data, filters) {
