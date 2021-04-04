@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "1i4y90p8J59KF/FbUuajopwDYd3dR7YZ19xJW0m7I1mNrmLpNGgMMCNOZg/kKopqHuyxo5Fj2mn2V0SO0lYOhA==",
+  "success": true,
+  "projectFilePath": "/home/harald/projects/microservice-playground/microservices/dotnetapi/dotnetapi.csproj",
+  "expectedPackageFiles": [
+    "/home/harald/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "/home/harald/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/home/harald/.nuget/packages/swashbuckle.aspnetcore/5.6.3/swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "/home/harald/.nuget/packages/swashbuckle.aspnetcore.swagger/5.6.3/swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "/home/harald/.nuget/packages/swashbuckle.aspnetcore.swaggergen/5.6.3/swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "/home/harald/.nuget/packages/swashbuckle.aspnetcore.swaggerui/5.6.3/swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}
