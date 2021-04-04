@@ -1,9 +1,7 @@
+Microservices Docker
+
 README.md
 
-Checkout krakend-ce && build Exe and remove Source
-
 Overview with Diagrams <https://github.com/mingrammer/diagrams>
-
-Microservices Docker
 
 Kubernetis pods
