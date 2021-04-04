@@ -40,11 +40,14 @@ namespace dotnetapi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "dotnetapi v1"));
             }
 
-            app.UseHttpsRedirection();
+            // we always want swagger
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "dotnetapi v1"));
+
+            // no https redirection - we have a API-Gateway
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
