@@ -1,8 +1,12 @@
-all:: advanced greeter mathservice task-api
+all:: advanced dotnetapi greeter mathservice task-api
 
 .PHONY: advanced
 advanced:
 	cd advanced && make
+
+.PHONY: dotnetapi
+advanced:
+	cd dotnetapi && make
 
 .PHONY: greeter
 greeter:

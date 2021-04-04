@@ -1,12 +1,18 @@
 ###############################################################
 # Builder
 ###############################################################
-FROM golang:latest
+FROM mcr.microsoft.com/dotnet/sdk:5.0
 
-WORKDIR /go/src/advanced.example.com/
+WORKDIR /build
 
 COPY src .
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix advanced -o advanced .
+
+RUN RID="unknown" && \
+    case "$(uname -m)" in \
+        *x86_64*)  RID=linux-x64;; \
+    esac \
+    && dotnet publish -c Release --self-contained -r ${RID} \
+    && mv /src/bin/Release/net5.0/${RID}/publish .
 
 ###############################################################
 # Runner
@@ -23,6 +29,6 @@ ENV ASPNETCORE_SHUTDOWNTIMEOUTSECONDS=3
 
 WORKDIR /root/
 EXPOSE 8080
-COPY publish .
+COPY --from=0 /build/publish .
 
 CMD ["./dotnetapi"]
