@@ -1,7 +1,11 @@
-all:: config krakend microservices openapi-ui
+all:: config genconfig krakend microservices openapi-ui
 
 config:
 	cp -r templates/config-tpl config
+
+.PHONY: genconfig
+genconfig:
+	cd genconfig && make
 
 .PHONY: krakend
 krakend:
