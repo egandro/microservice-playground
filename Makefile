@@ -1,4 +1,4 @@
-all:: krakend microservices
+all:: krakend microservices openapi-ui
 
 .PHONY: krakend
 krakend:
@@ -7,3 +7,7 @@ krakend:
 .PHONY: microservices
 microservices:
 	cd microservices && make
+
+.PHONY: openapi-ui
+krakend:
+	cd openapi-ui && make

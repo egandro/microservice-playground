@@ -1,0 +1,1694 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "No title",
+    "description": "No Description.",
+    "version": "v0.0.0"
+  },
+  "paths": {
+    "/file-multi-upload": {
+      "post": {
+        "summary": "Files Uploads With 'multipart/form-data'",
+        "description": "",
+        "operationId": "./main.fileMultiUploader",
+        "parameters": [
+          {
+            "name": "in_query",
+            "in": "query",
+            "description": "Simple scalar value in query.",
+            "schema": {
+              "type": "integer",
+              "description": "Simple scalar value in query."
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/FormDataUploadType2"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InfoType2"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/file-upload": {
+      "post": {
+        "summary": "File Upload With 'multipart/form-data'",
+        "description": "",
+        "operationId": "./main.fileUploader",
+        "parameters": [
+          {
+            "name": "in_query",
+            "in": "query",
+            "description": "Simple scalar value in query.",
+            "schema": {
+              "type": "integer",
+              "description": "Simple scalar value in query."
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/FormDataUpload"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Info"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gzip-pass-through": {
+      "get": {
+        "summary": "direct Gzip",
+        "description": "",
+        "operationId": "./main.directGzip",
+        "parameters": [
+          {
+            "name": "plainStruct",
+            "in": "query",
+            "description": "Output plain structure instead of gzip container.",
+            "schema": {
+              "type": "boolean",
+              "description": "Output plain structure instead of gzip container."
+            }
+          },
+          {
+            "name": "countItems",
+            "in": "query",
+            "description": "Invokes internal decoding of compressed data.",
+            "schema": {
+              "type": "boolean",
+              "description": "Invokes internal decoding of compressed data."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Header": {
+                "style": "simple",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GzipPassThroughStruct"
+                }
+              }
+            }
+          }
+        }
+      },
+      "head": {
+        "summary": "direct Gzip",
+        "description": "",
+        "operationId": "./main.directGzip",
+        "parameters": [
+          {
+            "name": "plainStruct",
+            "in": "query",
+            "description": "Output plain structure instead of gzip container.",
+            "schema": {
+              "type": "boolean",
+              "description": "Output plain structure instead of gzip container."
+            }
+          },
+          {
+            "name": "countItems",
+            "in": "query",
+            "description": "Invokes internal decoding of compressed data.",
+            "schema": {
+              "type": "boolean",
+              "description": "Invokes internal decoding of compressed data."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Header": {
+                "style": "simple",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/json-body-validation/{in-path}": {
+      "post": {
+        "summary": "Request With JSON Body and non-trivial validation",
+        "description": "Request with JSON body and query/header/path params, response with JSON body and data from request.",
+        "operationId": "",
+        "parameters": [
+          {
+            "name": "in_query",
+            "in": "query",
+            "description": "Simple scalar value in query.",
+            "schema": {
+              "minimum": 100,
+              "type": "integer",
+              "description": "Simple scalar value in query."
+            }
+          },
+          {
+            "name": "in-path",
+            "in": "path",
+            "description": "Simple scalar value in path",
+            "required": true,
+            "schema": {
+              "minLength": 3,
+              "type": "string",
+              "description": "Simple scalar value in path"
+            }
+          },
+          {
+            "name": "X-Header",
+            "in": "header",
+            "description": "Simple scalar value in header.",
+            "schema": {
+              "minLength": 3,
+              "type": "string",
+              "description": "Simple scalar value in header."
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InputWithJSONType3"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OutputWithJSONType3"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/json-body/{in-path}": {
+      "post": {
+        "summary": "Request With JSON Body",
+        "description": "Request with JSON body and query/header/path params, response with JSON body and data from request.",
+        "operationId": "./main.jsonBody",
+        "parameters": [
+          {
+            "name": "in_query",
+            "in": "query",
+            "description": "Simple scalar value in query.",
+            "schema": {
+              "type": "string",
+              "description": "Simple scalar value in query.",
+              "format": "date"
+            }
+          },
+          {
+            "name": "in-path",
+            "in": "path",
+            "description": "Simple scalar value in path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Simple scalar value in path"
+            }
+          },
+          {
+            "name": "X-Header",
+            "in": "header",
+            "description": "Simple scalar value in header.",
+            "schema": {
+              "type": "string",
+              "description": "Simple scalar value in header."
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InputWithJSONType2"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OutputWithJSONType2"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/json-map-body": {
+      "post": {
+        "summary": "Request With JSON Map In Body",
+        "description": "Request with JSON object (map) body.",
+        "operationId": "./main.jsonMapBody",
+        "parameters": [
+          {
+            "name": "in_query",
+            "in": "query",
+            "description": "Simple scalar value in query.",
+            "schema": {
+              "type": "integer",
+              "description": "Simple scalar value in query."
+            }
+          },
+          {
+            "name": "X-Header",
+            "in": "header",
+            "description": "Simple scalar value in header.",
+            "schema": {
+              "type": "string",
+              "description": "Simple scalar value in header."
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JsonMapReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JsonOutputType2"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/json-param/{in-path}": {
+      "get": {
+        "summary": "Request With JSON Query Parameter",
+        "description": "Request with JSON body and query/header/path params, response with JSON body and data from request.",
+        "operationId": "./main.jsonParam",
+        "parameters": [
+          {
+            "name": "in_query",
+            "in": "query",
+            "description": "Simple scalar value in query.",
+            "schema": {
+              "type": "integer",
+              "description": "Simple scalar value in query."
+            }
+          },
+          {
+            "name": "identity",
+            "in": "query",
+            "description": "JSON value in query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JSONPayload"
+                }
+              }
+            }
+          },
+          {
+            "name": "in-path",
+            "in": "path",
+            "description": "Simple scalar value in path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Simple scalar value in path"
+            }
+          },
+          {
+            "name": "X-Header",
+            "in": "header",
+            "description": "Simple scalar value in header.",
+            "schema": {
+              "type": "string",
+              "description": "Simple scalar value in header."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OutputWithJSON"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/json-slice-body": {
+      "post": {
+        "summary": "Request With JSON Array In Body",
+        "description": "",
+        "operationId": "./main.jsonSliceBody",
+        "parameters": [
+          {
+            "name": "in_query",
+            "in": "query",
+            "description": "Simple scalar value in query.",
+            "schema": {
+              "type": "integer",
+              "description": "Simple scalar value in query."
+            }
+          },
+          {
+            "name": "X-Header",
+            "in": "header",
+            "description": "Simple scalar value in header.",
+            "schema": {
+              "type": "string",
+              "description": "Simple scalar value in header."
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JsonSliceReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JsonOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/output-csv-writer": {
+      "get": {
+        "summary": "Output With Stream Writer",
+        "description": "Output with stream writer.",
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Header": {
+                "style": "simple",
+                "description": "Sample response header.",
+                "schema": {
+                  "type": "string",
+                  "description": "Sample response header."
+                }
+              }
+            },
+            "content": {
+              "text/csv": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestErrResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/output-headers": {
+      "get": {
+        "summary": "Output With Headers",
+        "description": "Output with headers.",
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Header": {
+                "style": "simple",
+                "description": "Sample response header.",
+                "schema": {
+                  "type": "string",
+                  "description": "Sample response header."
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HeaderOutput"
+                }
+              }
+            }
+          }
+        }
+      },
+      "head": {
+        "summary": "Output With Headers",
+        "description": "Output with headers.",
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Header": {
+                "style": "simple",
+                "description": "Sample response header.",
+                "schema": {
+                  "type": "string",
+                  "description": "Sample response header."
+                }
+              }
+            },
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/query-object": {
+      "get": {
+        "summary": "Request With Object As Query Parameter",
+        "description": "",
+        "operationId": "./main.queryObject",
+        "parameters": [
+          {
+            "name": "in_query",
+            "in": "query",
+            "description": "Object value in query.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "number"
+              },
+              "description": "Object value in query."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OutputQueryObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/req-resp-mapping": {
+      "post": {
+        "summary": "Request Response Mapping",
+        "description": "This use case has transport concerns fully decoupled with external req/resp mapping.",
+        "operationId": "reqRespMapping",
+        "parameters": [
+          {
+            "name": "X-Header",
+            "in": "header",
+            "description": "Simple scalar value.",
+            "schema": {
+              "type": "string",
+              "description": "Simple scalar value."
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/FormDataInputPort"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Value-1": {
+                "style": "simple",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Value-2": {
+                "style": "simple",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/validation": {
+      "post": {
+        "summary": "Validation",
+        "description": "Input/Output with validation. Custom annotation.",
+        "operationId": "./main.validation",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "This parameter will bypass explicit validation as it does not have constraints.",
+            "schema": {
+              "type": "boolean",
+              "description": "This parameter will bypass explicit validation as it does not have constraints."
+            }
+          },
+          {
+            "name": "X-Input",
+            "in": "header",
+            "description": "Request minimum: 10, response maximum: 20.",
+            "schema": {
+              "minimum": 10,
+              "type": "integer",
+              "description": "Request minimum: 10, response maximum: 20."
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InputPortType2"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Output": {
+                "style": "simple",
+                "schema": {
+                  "maximum": 20,
+                  "type": "integer"
+                }
+              },
+              "X-Query": {
+                "style": "simple",
+                "description": "This header bypasses validation as it does not have constraints.",
+                "schema": {
+                  "type": "boolean",
+                  "description": "This header bypasses validation as it does not have constraints."
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OutputPortType2"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/hello/{name}": {
+      "get": {
+        "summary": "Greeter",
+        "description": "Greeter greets you.",
+        "operationId": "./main.main",
+        "parameters": [
+          {
+            "name": "locale",
+            "in": "query",
+            "schema": {
+              "pattern": "^[a-z]{2}-[A-Z]{2}$",
+              "enum": [
+                "ru-RU",
+                "en-US"
+              ],
+              "type": "string",
+              "default": "en-US"
+            }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 3,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Now": {
+                "style": "simple",
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HelloOutput"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestErrResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/add/{a}/{b}": {
+      "get": {
+        "summary": "Add",
+        "description": "Add two integers.",
+        "operationId": "./main.createAddMethod",
+        "parameters": [
+          {
+            "name": "a",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "b",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Now": {
+                "style": "simple",
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddOutput"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestErrResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sub/{a}/{b}": {
+      "get": {
+        "summary": "Sub",
+        "description": "Sub two integers.",
+        "operationId": "./main.createSubMethod",
+        "parameters": [
+          {
+            "name": "a",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "b",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Now": {
+                "style": "simple",
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubOutput"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestErrResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/tasks/{id}": {
+      "put": {
+        "tags": [
+          "Admin Mode"
+        ],
+        "summary": "Update Task",
+        "description": "Update existing task.",
+        "operationId": "internal/usecase.UpdateTask",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsecaseUpdateTask"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestErrResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestErrResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Admin": []
+          }
+        ]
+      }
+    },
+    "/dev/tasks": {
+      "get": {
+        "tags": [
+          "Dev Mode"
+        ],
+        "summary": "Find Tasks",
+        "description": "Find all tasks.",
+        "operationId": "internal/usecase.FindTasks",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TaskEntity"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Dev Mode"
+        ],
+        "summary": "Create Task",
+        "description": "Create task to be done.",
+        "operationId": "internal/usecase.CreateTask",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskValue"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestErrResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestErrResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dev/tasks/{id}": {
+      "delete": {
+        "tags": [
+          "Dev Mode"
+        ],
+        "summary": "Finish Task",
+        "description": "Finish task by ID.",
+        "operationId": "internal/usecase.FinishTask",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestErrResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestErrResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Dev Mode"
+        ],
+        "summary": "Find Task",
+        "description": "Find task by ID.",
+        "operationId": "internal/usecase.FindTask",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestErrResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestErrResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Dev Mode"
+        ],
+        "summary": "Update Task",
+        "description": "Update existing task.",
+        "operationId": "internal/usecase.UpdateTask",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsecaseUpdateTask"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestErrResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/tasks": {
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Create Task",
+        "description": "Create task to be done.",
+        "operationId": "internal/usecase.CreateTask",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskValue"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestErrResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestErrResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestErrResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "User": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "FormDataUploadType2": {
+        "type": "object",
+        "properties": {
+          "simple": {
+            "type": "string",
+            "description": "Simple scalar value in body."
+          },
+          "uploads1": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FormDataMultipartFileHeader"
+            },
+            "description": "Uploads with *multipart.FileHeader.",
+            "nullable": true
+          },
+          "uploads2": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FormDataMultipartFile"
+            },
+            "description": "Uploads with multipart.File.",
+            "nullable": true
+          }
+        }
+      },
+      "InfoType2": {
+        "type": "object",
+        "properties": {
+          "filenames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "headers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TextprotoMIMEHeader"
+            },
+            "nullable": true
+          },
+          "inQuery": {
+            "type": "integer"
+          },
+          "peeks1": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "peeks2": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "simple": {
+            "type": "string"
+          },
+          "sizes": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "nullable": true
+          }
+        }
+      },
+      "FormDataUpload": {
+        "type": "object",
+        "properties": {
+          "simple": {
+            "type": "string",
+            "description": "Simple scalar value in body."
+          },
+          "upload1": {
+            "$ref": "#/components/schemas/FormDataMultipartFileHeader"
+          },
+          "upload2": {
+            "$ref": "#/components/schemas/FormDataMultipartFile"
+          }
+        }
+      },
+      "Info": {
+        "type": "object",
+        "properties": {
+          "filename": {
+            "type": "string"
+          },
+          "header": {
+            "$ref": "#/components/schemas/TextprotoMIMEHeader"
+          },
+          "inQuery": {
+            "type": "integer"
+          },
+          "peek1": {
+            "type": "string"
+          },
+          "peek2": {
+            "type": "string"
+          },
+          "simple": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer"
+          }
+        }
+      },
+      "GzipPassThroughStruct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "text": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        }
+      },
+      "InputWithJSONType3": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "minimum": 100,
+            "type": "integer"
+          },
+          "name": {
+            "minLength": 3,
+            "type": "string"
+          }
+        }
+      },
+      "OutputWithJSONType3": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "minimum": 100,
+            "type": "integer"
+          },
+          "inHeader": {
+            "minLength": 3,
+            "type": "string"
+          },
+          "inPath": {
+            "minLength": 3,
+            "type": "string"
+          },
+          "inQuery": {
+            "minimum": 3,
+            "type": "integer"
+          },
+          "name": {
+            "minLength": 3,
+            "type": "string"
+          }
+        }
+      },
+      "InputWithJSONType2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "OutputWithJSONType2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "inHeader": {
+            "type": "string"
+          },
+          "inPath": {
+            "type": "string"
+          },
+          "inQuery": {
+            "type": "string",
+            "format": "date"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "JsonMapReq": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "number"
+        },
+        "nullable": true
+      },
+      "JsonOutputType2": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/JSONMapPayload"
+          },
+          "inHeader": {
+            "type": "string"
+          },
+          "inQuery": {
+            "type": "integer"
+          }
+        }
+      },
+      "OutputWithJSON": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "inHeader": {
+            "type": "string"
+          },
+          "inPath": {
+            "type": "string"
+          },
+          "inQuery": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "JsonSliceReq": {
+        "type": "array",
+        "items": {
+          "type": "integer"
+        },
+        "nullable": true
+      },
+      "JsonOutput": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/JSONSlicePayload"
+          },
+          "inHeader": {
+            "type": "string"
+          },
+          "inQuery": {
+            "type": "integer"
+          }
+        }
+      },
+      "RestErrResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "Application-specific error code."
+          },
+          "context": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "Application context."
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message."
+          },
+          "status": {
+            "type": "string",
+            "description": "Status text."
+          }
+        }
+      },
+      "HeaderOutput": {
+        "type": "object",
+        "properties": {
+          "inBody": {
+            "type": "string"
+          }
+        }
+      },
+      "OutputQueryObject": {
+        "type": "object",
+        "properties": {
+          "inQuery": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number"
+            },
+            "nullable": true
+          }
+        }
+      },
+      "FormDataInputPort": {
+        "type": "object",
+        "properties": {
+          "val2": {
+            "type": "integer",
+            "description": "Simple scalar value."
+          }
+        }
+      },
+      "InputPortType2": {
+        "required": [
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "minLength": 3,
+                "type": "string",
+                "description": "Request minLength: 3, response maxLength: 7"
+              }
+            }
+          }
+        }
+      },
+      "OutputPortType2": {
+        "required": [
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "maxLength": 7,
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "FormDataMultipartFileHeader": {
+        "type": "string",
+        "format": "binary"
+      },
+      "FormDataMultipartFile": {
+        "type": "string",
+        "format": "binary",
+        "nullable": true
+      },
+      "TextprotoMIMEHeader": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "nullable": true
+      },
+      "JSONMapPayload": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "number"
+        },
+        "nullable": true
+      },
+      "JSONSlicePayload": {
+        "type": "array",
+        "items": {
+          "type": "integer"
+        },
+        "nullable": true
+      },
+      "HelloOutput": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "AddOutput": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "integer"
+          }
+        }
+      },
+      "SubOutput": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "integer"
+          }
+        }
+      },
+      "UsecaseUpdateTask": {
+        "required": [
+          "goal"
+        ],
+        "type": "object",
+        "properties": {
+          "deadline": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "goal": {
+            "minLength": 1,
+            "type": "string"
+          }
+        }
+      },
+      "TaskEntity": {
+        "required": [
+          "goal"
+        ],
+        "type": "object",
+        "properties": {
+          "closedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deadline": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "goal": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TaskStatus"
+          }
+        }
+      },
+      "TaskValue": {
+        "required": [
+          "goal"
+        ],
+        "type": "object",
+        "properties": {
+          "deadline": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "goal": {
+            "minLength": 1,
+            "type": "string"
+          }
+        }
+      },
+      "TaskStatus": {
+        "title": "Goal Status",
+        "enum": [
+          "",
+          "canceled",
+          "done",
+          "expired"
+        ],
+        "type": "string",
+        "description": "Non-empty task status indicates result."
+      }
+    },
+    "securitySchemes": {
+      "Admin": {
+        "type": "http",
+        "scheme": "basic",
+        "description": "Admin access"
+      },
+      "User": {
+        "type": "http",
+        "scheme": "basic",
+        "description": "User access"
+      }
+    }
+  }
+}
