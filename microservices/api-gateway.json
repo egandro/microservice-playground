@@ -1,0 +1,42 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Application API-Gateway",
+        "description": "Demo Application for API Gateway.",
+        "version": "v0.0.1"
+    },
+    "filter": [
+        "x-internal"
+    ],
+    "services": [
+        {
+            "name": "advanced",
+            "url": "http://localhost:8010",
+            "openapi": "/docs/openapi.json",
+            "filter": [
+                "x-whatever"
+            ]
+        },
+        {
+            "name": "dotnetapi",
+            "url": "http://localhost:8011",
+            "openapi": "/swagger/v1/swagger.json",
+            "filter": []
+        },
+        {
+            "name": "greeter",
+            "url": "http://localhost:8012",
+            "openapi": "/docs/openapi.json"
+        },
+        {
+            "name": "mathservice",
+            "url": "http://localhost:8013",
+            "openapi": "/docs/openapi.json"
+        },
+        {
+            "name": "task-api",
+            "url": "http://localhost:8014",
+            "openapi": "/docs/openapi.json"
+        }
+    ]
+}

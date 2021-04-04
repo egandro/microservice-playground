@@ -17,4 +17,4 @@ WORKDIR /root/
 COPY --from=0 /go/src/task-api.example.com/task-api .
 
 EXPOSE 8080
-CMD ["./greeter"]
+CMD ["./task-api"]

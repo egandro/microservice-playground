@@ -6,50 +6,18 @@ const fs = require('fs');
 const { program } = require('commander');
 const packageData = require('./package.json');
 
-program.version(packageData.version);
-
-
-program
-  .option('-d, --debug', 'output extra debugging')
-  .option('-s, --small', 'small pizza size')
-  .option('-p, --pizza-type <type>', 'flavour of pizza')
-  .requiredOption('-c, --configFile', 'config file');
-
-program.parse(process.argv);
-
-const options = program.opts();
+const options = parseCli();
 
 if (options.debug) {
     console.log(options);
 }
 
-console.log('pizza details:');
-
-if (options.small) {
-    console.log('- small pizza size');
+try {
+    parse(options.config);
 }
-
-if (options.pizzaType) {
-    console.log(`- ${options.pizzaType}`);
+catch (err) {
+    console.error(err);
 }
-
-/*
-$ pizza-options -d
-{ debug: true, small: undefined, pizzaType: undefined }
-pizza details:
-$ pizza-options -p
-error: option '-p, --pizza-type <type>' argument missing
-$ pizza-options -ds -p vegetarian
-{ debug: true, small: true, pizzaType: 'vegetarian' }
-pizza details:
-- small pizza size
-- vegetarian
-$ pizza-options --pizza-type=cheese
-pizza details:
-- cheese
-*/
-
-return;
 
 const openApiPaths = {};
 const openApiComponents = {};
@@ -71,11 +39,19 @@ async function parse(fileName) {
         globalFilters = config.filter;
     }
 
+
     for (const section of config.services) {
 
         const url = section.url + section.openapi;
-        const response = await axios.get(url);
+        let response;
 
+        try {
+            response = await axios.get(url);
+        }
+        catch (err) {
+            console.error("error: opening URL " + url + ". Is the service running?");
+            process.exit(-1);
+        }
 
         let filters = [];
         for (const filter of globalFilters) {
@@ -129,7 +105,7 @@ async function parse(fileName) {
     }
 
     const openApiJson = JSON.stringify(openApi, null, 2);
-    fs.writeFileSync("./openapi.json", openApiJson);
+    fs.writeFileSync(options.openapi, openApiJson);
 
     //console.log(openApiPaths);
     //console.log(openApiComponents);
@@ -140,7 +116,7 @@ async function parse(fileName) {
         api_group: endpoints
     }
     const endpointsJson = JSON.stringify(api_group, null, 2);
-    fs.writeFileSync("./endpoint.json", endpointsJson);
+    fs.writeFileSync(options.endpoint, endpointsJson);
 
     //console.log(endpointsJson);
 }
@@ -174,7 +150,7 @@ async function parseEndpointData(data, filters) {
                     }
                 }
             }
-            if(filtered) {
+            if (filtered) {
                 continue;
             }
 
@@ -262,7 +238,7 @@ async function parseEndpointData(data, filters) {
 
             result.push(entry);
 
-            if(!openApiPaths.hasOwnProperty(path)) {
+            if (!openApiPaths.hasOwnProperty(path)) {
                 openApiPaths[path] = {};
             }
             openApiPaths[path][verb] = verbs[verb];
@@ -344,9 +320,14 @@ async function parseEndpointData(data, filters) {
     return result;
 }
 
-try {
-    parse('./config.json');
-}
-catch (err) {
-    console.error(err);
+
+function parseCli() {
+    program.version(packageData.version);
+    program
+        .requiredOption('-c, --config <fileName>', 'API Gateway specification source file')
+        .requiredOption('-e, --endpoint <fileName>', 'Endpoint destination file')
+        .requiredOption('-o, --openapi <fileName>', 'OpenAPI destination file');
+
+    program.parse(process.argv);
+    return program.opts();
 }

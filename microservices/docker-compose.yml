@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  advanced:
+    image: "advanced:latest"
+    ports:
+      - "8010:8080"
+  dotnetapi:
+    image: "dotnetapi:latest"
+    ports:
+      - "8011:8080"
+  greeter:
+    image: "greeter:latest"
+    ports:
+      - "8012:8080"
+  mathservice:
+    image: "mathservice:latest"
+    ports:
+      - "8013:8080"
+  task-api:
+    image: "task-api:latest"
+    ports:
+      - "8014:8080"
+
+  # openapi:
+  #   image: "openapi:latest"
+  #   ports:
+  #     - "8005:8080"
+  #   volumes:
+  #     - ./codegen:/root/public

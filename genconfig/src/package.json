@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js -c ../../microservices/api-gateway.json -e ../../config/krakend/settings/endpoint.json -o ../../config/swagger-ui/openapi.json"
   },
   "author": "",
   "license": "ISC",
