@@ -1,4 +1,7 @@
-all:: krakend microservices openapi-ui
+all:: config krakend microservices openapi-ui
+
+config:
+	cp -r templates/config-tpl config
 
 .PHONY: krakend
 krakend:
