@@ -1,0 +1,18 @@
+{
+    "api_group": [
+        {
+            "endpoint": "/users/{id}",
+            "method": "GET",
+            "host": "http://server1.example.com:1234",
+            "url_pattern": "/v1/users?userId={id}",
+            "backend": "server1"
+        },
+        {
+            "endpoint": "/posts/{id}",
+            "method": "GET",
+            "host": "http://server2.example.com:1234",
+            "url_pattern": "/posts?postId={id}",
+            "backend": "server2"
+        }
+    ]
+}

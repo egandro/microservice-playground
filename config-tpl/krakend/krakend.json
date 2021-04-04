@@ -1,0 +1,78 @@
+{
+    "version": 2,
+    "name": "{{ .service.name }}",
+    "port": {{ .service.port }},
+    "cache_ttl": "{{ .service.cache_ttl }}",
+    "timeout": "{{ .service.timeout }}",
+    "extra_config": {{ marshal .service.extra_config }},
+    "endpoints": [
+        {{ range .endpoint.api_group }}
+        {
+        "headers_to_pass": [
+            "WWW-Authenticate",
+            "Authorization"
+        ],
+        "output_encoding": "no-op",
+        "endpoint": "{{ .endpoint }}",
+        "method": "{{ .method }}",
+        "backend": [
+            {
+                "host": [
+                    "{{ .host }}"
+                ],
+                "encoding": "no-op",
+                "url_pattern": "{{ .url_pattern }}",
+                "extra_config": {
+                    "github.com/devopsfaith/krakend-martian": {
+                        "header.Modifier": {
+                          "scope": ["response"],
+                          "name": "x-kraken-backend",
+                          "value": "{{ .backend }}"
+                        }
+                    }
+                }
+            }
+        ]
+        },
+        {{ end }}
+        {
+            "endpoint": "/docs/",
+            "output_encoding": "no-op",
+            "backend": [
+                {
+                    "host": [
+                        " {{ .service.swagger_backend }}"
+                    ],
+                    "encoding": "no-op",
+                    "url_pattern": "/docs/"
+                }
+            ]
+        },
+        {
+            "endpoint": "/docs/{a}",
+            "output_encoding": "no-op",
+            "backend": [
+                {
+                    "host": [
+                        " {{ .service.swagger_backend }}"
+                    ],
+                    "encoding": "no-op",
+                    "url_pattern": "/docs/{a}"
+                }
+            ]
+        },
+        {
+            "endpoint": "/docs/{a}/{b}",
+            "output_encoding": "no-op",
+            "backend": [
+                {
+                    "host": [
+                        " {{ .service.swagger_backend }}"
+                    ],
+                    "encoding": "no-op",
+                    "url_pattern": "/docs/{a}/{b}"
+                }
+            ]
+        }
+    ]
+}
