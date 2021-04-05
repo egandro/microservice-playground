@@ -22,7 +22,6 @@ It also allows filtering internal methods (by using official OpenAPI Extension t
 
 It also creates a joined OpenAPI document with specifications from all of your microservices. This document can be used, e.g. for your frontend team or your mobile team to create client services. This is a non-trivial approach. We have to take care about OpenAPI security entries and also remove filtered request/response schemas from the joined document.
 
-
 ## Demo Architecture
 
 The sample application consists of a bunch dockered microservices written in different technology. They all provide some hello world nonsense services. Please check the <CREDITS.md> file.
@@ -35,6 +34,101 @@ We have examples in:
   - Java (Spring)
 
 ![Architecture](docs/architecture.png)
+
+
+## Run the examples
+
+  - You need docker, docker-compose, make
+
+### Build
+``` bash
+$ git clone ...
+$ make
+```
+
+  - The "templates" folder is copied to "config". This is a foundation of a KrakenD flexible configuration - <https://www.krakend.io/docs/configuration/flexible-config/>
+
+### Run the microservices
+
+  - open a Terminal
+
+``` bash
+$ cd microservices
+$ make run
+```
+
+### Create configuration from your microservices
+
+  - make sure the microservices are running
+  - open a Terminal
+
+``` bash
+$ make update-krakend-config
+```
+
+This will create files:
+  - KrakenD: config/krakend/settings/endpoint.json
+  - OpenAPI: config/swagger-ui/openapi.json
+
+The code generator will use all microservices specified in:
+  - microservices/api-gateway.json
+
+At this moment, we have no kubernetes sample. So it is assumed, that Docker runs on the internal IP: 172.17.0.1. Please change to your needs.
+
+### Run the API Gateway
+
+  - make sure the microservices are running
+  - make sure you created the configuration files
+  - open a Terminal
+
+``` bash
+$ make check-krakend-config
+$ make run-krakend
+```
+
+  - the API Gateway is now available at <http://localhost:8080>
+  - the joined OpenAPI is now available at <http://localhost:8080/docs>
+  - the joined OpenAPI JSON file is now available at <http://localhost:8080/docs/static/openapi.json>
+
+### Development Loop
+
+  1. Create/Update/Delete endpoints on your microserice.
+  2. Add/Delete 'x-internal' OpenAPI Extensions to show/hide a route on the API-Gateway. Check the example microservices. It's simple.
+  3. Build / Restart the microserice (cd microservice && make && make run)
+  4. Update the KrakenD config (make update-krakend-config)
+     - A KrakenD restart is usually not required
+     - KrakenD will automaticually update the config, if there are new files.
+     - The joined OpenAPI-UI just needs to refresh with the new openapi.json file.
+  5. Update all consumers of the Open-API e.g. mobile / web apps.
+  6. GOTO 1.
+
+Please read some further documentation about API versioning.
+
+## TODO
+
+A lot at the moment:
+
+  - Add a kubernetes ("homelab") version using kind <https://kind.sigs.k8s.io/docs/user/quick-start/>
+  - rewrite the NodeJS based config generator in Go
+    - <https://irshadhasmat.medium.com/golang-simple-json-parsing-using-empty-interface-and-without-struct-in-go-language-e56d0e69968>
+    - <https://mrwaggel.be/post/golang-reflect-if-initialized-struct-has-member-method-or-fields/>
+  - There is sort of a bug with urlencode. Not sure how this occurs. <https://github.com/swaggest/swgui/issues/21>
+
+Enhancements for the config generator:
+
+  - add "content types" to routes but not really sure how we can make this happen with multiple response types
+  - KrakenD config for this "output_encoding": "json",
+  - path moving e.g. /foo (original microservice) to /namespace/foo
+  - types in schemas might conflict in the joined OpenAPI document e.g. microservice A might have a "User" and microservice B might have a "User" (with different structure). We need to add some aliasing here. e.g. FooBar_User
+
+
+More samples (in different Repos)
+
+  - Sample with no Database
+  - Sample with Database
+  - Sample with OAuth / LDAP / JWT / Security + Internal Security (internal microservices shoud use API Tokens)
+
+
 
 
 
