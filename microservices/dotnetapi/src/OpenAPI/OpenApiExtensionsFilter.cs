@@ -5,6 +5,9 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Linq;
 
+// officialy supported by open api specification:
+// https://swagger.io/docs/specification/openapi-extensions/
+
 namespace dotnetapi.OpenAPI
 {
     public class OpenApiExtensionsFilter : IOperationFilter

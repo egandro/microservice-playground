@@ -22,6 +22,8 @@ namespace dotnetapi.Controllers
         }
 
         [HttpGet]
+        // officialy supported by open api specification:
+        // https://swagger.io/docs/specification/openapi-extensions/
         [OpenApiExtension("x-internal", true)]
         public string Get()
         {

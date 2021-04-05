@@ -32,6 +32,9 @@ namespace dotnetapi
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "dotnetapi", Version = "v1" });
+
+                // officialy supported by open api specification:
+                // https://swagger.io/docs/specification/openapi-extensions/
                 c.OperationFilter<OpenApiExtensionsFilter>();
             });
         }

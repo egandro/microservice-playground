@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+// officialy supported by open api specification:
+// https://swagger.io/docs/specification/openapi-extensions/
+
 namespace dotnetapi.OpenAPI
 {
     public class OpenApiExtensionAttribute : Attribute
