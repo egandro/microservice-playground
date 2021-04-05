@@ -1,7 +1,3 @@
-Overview with Diagrams <https://github.com/mingrammer/diagrams>
-
-README.md
-
 Genconfig:
     - add "content types" to genconfig but not really sure how we can make this happen with multiple response types
     -  "output_encoding": "json",
