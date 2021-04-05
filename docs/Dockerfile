@@ -9,6 +9,7 @@ RUN apt-get update \
 
 WORKDIR /work
 
+# hack!
 RUN echo '#!/bin/bash\n\
 USER=$(stat -c '%u' $1)\n\
 GROUP=$(stat -c '%g' $1)\n\
