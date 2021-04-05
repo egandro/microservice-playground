@@ -92,12 +92,12 @@ $ make run-krakend
 
 ### Development Loop
 
-  1. Create/Update/Delete endpoints on your microserice.
+  1. Create/Update/Delete endpoints on your microservice.
   2. Add/Delete 'x-internal' OpenAPI Extensions to show/hide a route on the API-Gateway. Check the example microservices. It's simple.
-  3. Build / Restart the microserice (cd microservice && make && make run)
+  3. Build / Restart the microservice (cd microservice && make && make run)
   4. Update the KrakenD config (make update-krakend-config)
      - A KrakenD restart is usually not required
-     - KrakenD will automaticually update the config, if there are new files.
+     - KrakenD will automatically update the config, if there are new files.
      - The joined OpenAPI-UI just needs to refresh with the new openapi.json file.
   5. Update all consumers of the Open-API e.g. mobile / web apps.
   6. GOTO 1.
@@ -126,7 +126,7 @@ More samples (in different Repos)
 
   - Sample with no Database
   - Sample with Database
-  - Sample with OAuth / LDAP / JWT / Security + Internal Security (internal microservices shoud use API Tokens)
+  - Sample with OAuth / LDAP / JWT / Security + Internal Security (internal microservices should use API Tokens)
 
 
 
