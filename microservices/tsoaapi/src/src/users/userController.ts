@@ -1,6 +1,7 @@
 import {
     Body,
     Controller,
+    Extension,
     Get,
     Path,
     Post,
@@ -29,5 +30,14 @@ import {
       this.setStatus(201); // set return status 201
       new UserService().create(requestBody);
       return;
+    }
+
+    @Get("/secret/{userId}")
+    @Extension('x-internal','true')
+    public async getSecretOperation(
+      @Path() userId: number,
+      @Query() name?: string
+    ): Promise<User> {
+      return new UserService().get(userId, name);
     }
   }
