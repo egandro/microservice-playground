@@ -30,7 +30,7 @@ RUN chmod 755 /usr/local/bin/run
 COPY ./check.sh /usr/local/bin/check
 RUN chmod 755 /usr/local/bin/check
 
-COPY --from=0 /go/reflex/reflex .
+COPY --from=0 /go/reflex/reflex /usr/local/bin
 COPY --from=0 /go/krakend-ce/krakend .
 
 CMD ["/usr/local/bin/run"]
