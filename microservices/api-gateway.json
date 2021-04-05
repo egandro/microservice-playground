@@ -37,6 +37,11 @@
             "name": "task-api",
             "url": "http://172.17.0.1:8014",
             "openapi": "/docs/openapi.json"
+        },
+        {
+            "name": "tsoaapi",
+            "url": "http://172.17.0.1:8014",
+            "openapi": "/docs/openapi.json"
         }
     ]
 }

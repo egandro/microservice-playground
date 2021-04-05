@@ -3,6 +3,7 @@
     "noImplicitAdditionalProperties": "throw-on-extras",
     "controllerPathGlobs": ["src/**/*Controller.ts"],
     "spec": {
+      "specFileBaseName": "openapi",
       "outputDirectory": "build",
       "specVersion": 3
     },
