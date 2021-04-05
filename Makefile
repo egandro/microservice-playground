@@ -29,7 +29,7 @@ update-config: stop-krakend
 	docker run -it --name genconfig -v $$(pwd):/work genconfig:latest run -c /work/microservices/api-gateway.json -e /work/config/krakend/settings/endpoint.json -o /work/config/swagger-ui/openapi.json
 
 run-krakend: stop-krakend
-	docker run -it --name krakend -v $$(pwd)/config/krakend:/config -p 8080:8080 krakend:latest
+	docker run -it --name krakend -v $$(pwd)/config/krakend:/config -p 8080:8080 -p 8090:8090 krakend:latest
 
 stop-krakend:
 	@docker rm -f krakend 2>/dev/null || echo ""
