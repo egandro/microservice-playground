@@ -19,11 +19,11 @@ microservices:
 openapi-ui:
 	cd openapi-ui && make
 
-check-config:
+check-krakend-config:
 	@docker rm -f krakend_check 2>/dev/null || echo ""
 	docker run -it --name krakend_check -v $$(pwd)/config/krakend:/config krakend:latest check
 
-update-config: stop-krakend
+update-krakend-config: stop-krakend
 	@echo "make sure the microservices are running"
 	@docker rm -f genconfig 2>/dev/null || echo ""
 	docker run -it --name genconfig -v $$(pwd):/work genconfig:latest run -c /work/microservices/api-gateway.json -e /work/config/krakend/settings/endpoint.json -o /work/config/swagger-ui/openapi.json

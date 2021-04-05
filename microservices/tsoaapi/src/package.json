@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "build": "tsoa spec-and-routes && tsc --outDir build",
-    "start": "node build/src/server.js"
+    "start": "node build/src/server.js",
+    "dev": "npm run build && npm run start"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

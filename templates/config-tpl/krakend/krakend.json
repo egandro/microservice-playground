@@ -10,7 +10,8 @@
         {
         "headers_to_pass": [
             "WWW-Authenticate",
-            "Authorization"
+            "Authorization",
+            "Content-Type"
         ],
         "output_encoding": "no-op",
         "endpoint": "{{ .endpoint }}",
