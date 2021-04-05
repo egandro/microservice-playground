@@ -2,6 +2,8 @@ README.md
 
 tsoa example
 
+add x-internal to dotnet example
+
 Overview with Diagrams <https://github.com/mingrammer/diagrams>
 
 Kubernetis pods
