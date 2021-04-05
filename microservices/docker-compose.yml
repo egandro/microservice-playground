@@ -30,3 +30,7 @@ services:
     image: "task-api:latest"
     ports:
       - "8014:8080"
+  tsoaapi:
+    image: "tsoaapi:latest"
+    ports:
+      - "8015:8080"

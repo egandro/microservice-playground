@@ -40,7 +40,7 @@
         },
         {
             "name": "tsoaapi",
-            "url": "http://172.17.0.1:8014",
+            "url": "http://172.17.0.1:8015",
             "openapi": "/docs/openapi.json"
         }
     ]

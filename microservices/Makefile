@@ -1,4 +1,13 @@
-all:: advanced dotnetapi greeter mathservice task-api
+all:: advanced dotnetapi greeter mathservice task-api tsoaapi
+
+.PHONY: run
+run: all stop
+	docker-compose up || echo ""
+
+.PHONY: stop
+stop:
+	docker-compose stop || echo ""
+	docker-compose rm -f || echo ""
 
 .PHONY: advanced
 advanced:
@@ -20,11 +29,6 @@ mathservice:
 task-api:
 	cd task-api && make
 
-.PHONY: run
-run: all stop
-	docker-compose up || echo ""
-
-.PHONY: stop
-stop:
-	docker-compose stop || echo ""
-	docker-compose rm -f || echo ""
+.PHONY: tsoaapi
+task-api:
+	cd tsoaapi && make
