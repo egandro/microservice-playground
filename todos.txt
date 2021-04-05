@@ -1,3 +1,5 @@
+Overview with Diagrams <https://github.com/mingrammer/diagrams>
+
 README.md
 
 add "content types" to genconfig but not really sure how we can make this happen with multiple response types
@@ -6,6 +8,6 @@ tsoa example
 
 spring example
 
-Overview with Diagrams <https://github.com/mingrammer/diagrams>
-
 Kubernetis pods
+
+Check if this is a krakend bug - https://github.com/swaggest/swgui/issues/21
