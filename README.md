@@ -1,6 +1,6 @@
-# Microservices
+# Declarative API-Gateway for Microservices
 
-This is an example of creating an API-Gateway for microservices with as less effort as possible. We use a declarative only approach with as little configuration files as possible.
+This is tool for creating an enterprise API-Gateway for microservices with as less effort as possible. We use a declarative approach without touching configuration files.
 
 What are microservices? What is an API-Gateway? Why do I want all of this? Check this article <https://microservices.io/>.
 
@@ -114,6 +114,7 @@ A lot at the moment:
     - <https://irshadhasmat.medium.com/golang-simple-json-parsing-using-empty-interface-and-without-struct-in-go-language-e56d0e69968>
     - <https://mrwaggel.be/post/golang-reflect-if-initialized-struct-has-member-method-or-fields/>
   - There is sort of a bug with urlencode. Not sure how this occurs. <https://github.com/swaggest/swgui/issues/21>
+  - More template config flavours e.g. add SSL layer.
 
 Enhancements for the config generator:
 
