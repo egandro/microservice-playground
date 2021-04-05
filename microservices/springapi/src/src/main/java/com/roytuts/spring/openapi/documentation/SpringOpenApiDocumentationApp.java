@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringOpenApiDocumentationApp {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringOpenApiDocumentationApp.class, args);
-/*
+//		SpringApplication.run(SpringOpenApiDocumentationApp.class, args);
+
         SpringApplication app = new SpringApplication(SpringOpenApiDocumentationApp.class);
 
 		String port = System.getenv("PORT");
@@ -19,7 +19,6 @@ public class SpringOpenApiDocumentationApp {
 
         app.setDefaultProperties(Collections.singletonMap("server.port", port));
         app.run(args);
-*/
 	}
 
 }
