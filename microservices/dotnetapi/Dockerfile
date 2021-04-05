@@ -9,7 +9,9 @@ COPY src .
 
 RUN RID="unknown" && \
     case "$(uname -m)" in \
-        *x86_64*)  RID=linux-x64;; \
+        *x86_64*)   RID=linux-x64;; \
+        *armv7l*)   RID=linux-arm;; \
+        *aarch64*)  RID=linux-arm64;; \
     esac \
     && dotnet publish -c Release --self-contained -r ${RID} \
     && mv bin/Release/net5.0/${RID}/publish .
