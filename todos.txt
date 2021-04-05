@@ -4,8 +4,6 @@ README.md
 
 add "content types" to genconfig but not really sure how we can make this happen with multiple response types
 
-tsoa example
-
 spring example
 
 Kubernetis pods
