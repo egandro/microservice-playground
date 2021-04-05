@@ -66,12 +66,13 @@ func noCache(h http.Handler) http.Handler {
 func main() {
     var (
         name string
+		portPtr *int
     )
 
 	flag.StringVar(&name, "API_NAME", "My API", "name of the API")
     envflag.Parse()
 
-	portPtr := flag.Int("port", 8080, "webserver port")
+	portPtr = flag.Int("port", 8080, "webserver port")
 
 	http.Handle("/docs/", noCache(v3emb.NewHandler(name, "/docs/static/openapi.json", "/docs/")))
 	http.Handle("/docs/static/", noCache(http.StripPrefix("/docs/static/", http.FileServer(http.Dir("./public")))))
