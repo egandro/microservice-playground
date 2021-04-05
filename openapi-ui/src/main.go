@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"github.com/gobike/envflag"
 	"fmt"
 	"log"
 	"net/http"
@@ -63,9 +64,16 @@ func noCache(h http.Handler) http.Handler {
 }
 
 func main() {
+    var (
+        name string
+    )
+
+	flag.StringVar(&name, "API_NAME", "My API", "name of the API")
+    envflag.Parse()
+
 	portPtr := flag.Int("port", 8080, "webserver port")
 
-	http.Handle("/docs/", noCache(v3emb.NewHandler("My API", "/docs/static/openapi.json", "/docs/")))
+	http.Handle("/docs/", noCache(v3emb.NewHandler(name, "/docs/static/openapi.json", "/docs/")))
 	http.Handle("/docs/static/", noCache(http.StripPrefix("/docs/static/", http.FileServer(http.Dir("./public")))))
 
 	log.Println(fmt.Sprintf("http://localhost:%v/docs", *portPtr))

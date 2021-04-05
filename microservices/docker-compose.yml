@@ -2,6 +2,8 @@ version: "3.9"
 services:
   # this is no microservice - just for the joined openAPI config
   openapi-ui:
+    environment:
+      - API_NAME: "Example API-Gateway"
     image: "openapi-ui:latest"
     ports:
       - "8005:8080"
