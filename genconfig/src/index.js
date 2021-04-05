@@ -1,5 +1,6 @@
 "use strict";
 
+const process = require('process');
 const axios = require('axios');
 const fs = require('fs');
 
@@ -117,6 +118,16 @@ async function createEndpointAndOpenAPI(fileName) {
     fs.writeFileSync(options.endpoint, endpointsJson);
 
     //console.log(endpointsJson);
+
+    if(process.getuid() == 0) {
+        // we run in the docker container
+
+        // keep the uid/gid of the openApi file with the generated file
+        const statsObj = fs.statSync(options.config);
+
+        fs.chownSync(options.endpoint, statsObj.uid, statsObj.gid);
+        fs.chownSync(options.openapi, statsObj.uid, statsObj.gid);
+    }
 
     console.log("endpoint created:", options.endpoint);
     console.log("openAPI created:", options.openapi);
@@ -260,6 +271,28 @@ async function parseEndpointData(data, filters) {
     //         }
     //     }
     // }
+
+
+    // tsoa uses refs for generated striped down types
+    const refsTemp = JSON.parse(JSON.stringify(refs));; // deep copy
+
+    while (refsTemp.length > 0) {
+        const ref = refsTemp.shift();
+        const schemaName = ref.substring(ref.lastIndexOf('/') + 1);
+        const schema = data.components.schemas[schemaName];
+
+        if (schema.hasOwnProperty("$ref")) {
+            const internalRef = schema["$ref"];
+            // console.log("ref: ", ref);
+            // console.log("internalRef: ", internalRef);
+            if (!refs.includes(internalRef)) {
+                refs.push(internalRef);
+            }
+            if (!refsTemp.includes(internalRef)) {
+                refsTemp.push(internalRef);
+            }
+        }
+    }
 
     const refsProcessed = [];
 

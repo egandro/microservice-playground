@@ -2,7 +2,11 @@ Overview with Diagrams <https://github.com/mingrammer/diagrams>
 
 README.md
 
-add "content types" to genconfig but not really sure how we can make this happen with multiple response types
+
+Genconfig:
+    - add "content types" to genconfig but not really sure how we can make this happen with multiple response types
+    - path moving
+    - alias for conflicting types
 
 spring example
 
