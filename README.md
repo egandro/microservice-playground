@@ -27,6 +27,13 @@ It also creates a joined OpenAPI document with specifications from all of your m
 
 The sample application consists of a bunch dockered microservices written in different technology. They all provide some hello world nonsense services. Please check the <CREDITS.md> file.
 
+We have examples in:
+
+  - Go
+  - DotNet Core
+  - TypeScript (Node)
+  - Java (Spring)
+
 ![Architecture](docs/architecture.png)
 
 
