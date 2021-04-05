@@ -34,3 +34,7 @@ services:
     image: "tsoaapi:latest"
     ports:
       - "8015:8080"
+  springapi:
+    image: "springapi:latest"
+    ports:
+      - "8016:8080"

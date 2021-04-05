@@ -1,5 +1,2 @@
-src/.vs
-src/**.csproj.user
-src/obj
 src/.gradle
 src/build
