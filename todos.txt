@@ -1,5 +1,7 @@
 README.md
 
+tsoa example
+
 Overview with Diagrams <https://github.com/mingrammer/diagrams>
 
 Kubernetis pods
