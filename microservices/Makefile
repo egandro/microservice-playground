@@ -1,4 +1,4 @@
-all:: advanced dotnetapi greeter mathservice task-api tsoaapi
+all:: advanced dotnetapi greeter mathservice springapi task-api tsoaapi
 
 .PHONY: run
 run: all stop
@@ -24,6 +24,10 @@ greeter:
 .PHONY: mathservice
 mathservice:
 	cd mathservice && make
+
+.PHONY: springapi
+task-api:
+	cd springapi && make
 
 .PHONY: task-api
 task-api:
