@@ -108,7 +108,8 @@ Please read some further documentation about API versioning.
 
 A lot at the moment:
 
-  - Add PHP/Rust/... microservices.
+  - Add PHP/Rust/Python/... microservices.
+    - Tried this <https://github.com/zircote/swagger-php> but I am not smart enough for PHP.
   - Add a kubernetes ("homelab") version using kind <https://kind.sigs.k8s.io/docs/user/quick-start/>
   - rewrite the NodeJS based config generator in Go
     - <https://irshadhasmat.medium.com/golang-simple-json-parsing-using-empty-interface-and-without-struct-in-go-language-e56d0e69968>
