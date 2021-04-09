@@ -26,7 +26,7 @@ mathservice:
 	cd mathservice && make
 
 .PHONY: springapi
-task-api:
+springapi:
 	cd springapi && make
 
 .PHONY: task-api
@@ -34,5 +34,5 @@ task-api:
 	cd task-api && make
 
 .PHONY: tsoaapi
-task-api:
+tsoaapi:
 	cd tsoaapi && make
