@@ -68,13 +68,18 @@ async function createEndpointAndOpenAPI(fileName) {
         //console.log(response.data);
         openApiSpecs.push(response.data);
 
-        let specs = await parseEndpointData(response.data, filters);
+        let prefix = '';
+        if(section.prefix != null && section.prefix!=undefined) {
+            prefix = section.prefix;
+        }
+
+        let specs = await parseEndpointData(response.data, filters, prefix);
 
         for (const spec of specs) {
             // console.log(spec);
 
             let entry = {
-                endpoint: spec.path,
+                endpoint: prefix + spec.path,
                 method: spec.verb.toUpperCase(),
                 host: section.url,
                 url_pattern: spec.path,
@@ -133,7 +138,7 @@ async function createEndpointAndOpenAPI(fileName) {
     console.log("openAPI created:", options.openapi);
 }
 
-async function parseEndpointData(data, filters) {
+async function parseEndpointData(data, filters, prefix) {
     let result = [];
 
     const refs = [];
@@ -250,10 +255,12 @@ async function parseEndpointData(data, filters) {
 
             result.push(entry);
 
-            if (!openApiPaths.hasOwnProperty(path)) {
-                openApiPaths[path] = {};
+            // if we have a prefix, we need to patcht the openAPI path, too
+            const prefixPath = prefix + path;
+            if (!openApiPaths.hasOwnProperty(prefixPath)) {
+                openApiPaths[prefixPath] = {};
             }
-            openApiPaths[path][verb] = verbs[verb];
+            openApiPaths[prefixPath][verb] = verbs[verb];
         }
     }
 

@@ -120,7 +120,6 @@ Enhancements for the config generator:
 
   - add "content types" to routes but not really sure how we can make this happen with multiple response types
   - KrakenD config for this "output_encoding": "json",
-  - path moving e.g. /foo (original microservice) to /namespace/foo
   - types in schemas might conflict in the joined OpenAPI document e.g. microservice A might have a "User" and microservice B might have a "User" (with different structure). We need to add some aliasing here. e.g. FooBar_User
 
 

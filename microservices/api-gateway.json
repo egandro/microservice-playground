@@ -13,6 +13,7 @@
             "name": "advanced",
             "url": "http://172.17.0.1:8010",
             "openapi": "/docs/openapi.json",
+            "prefix": "/foo",
             "filter": [
                 "x-whatever"
             ]
@@ -26,7 +27,8 @@
         {
             "name": "greeter",
             "url": "http://172.17.0.1:8012",
-            "openapi": "/docs/openapi.json"
+            "openapi": "/docs/openapi.json",
+            "prefix": "/bar"
         },
         {
             "name": "mathservice",
